@@ -2,7 +2,7 @@ import { React } from 'react';
 import { Background, BookDiv } from './style';
 import { useNavigate } from 'react-router-dom';
 import { rentBooks } from '../../Services/Axios/bookService';
-import Button from '../../Components/Button';
+import Button from '../Button';
 
 const Book = ({
     title, author, release_year, renter, id, is_rented, messageAlert, messageTernario,
