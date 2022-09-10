@@ -28,6 +28,19 @@ services:
       - ../library_back/.env
     networks:
       - library-network
+  
+  frontend:
+    container_name: library_frontend
+    build: ../library_front
+    restart: always
+    depends_on:
+      - backend
+    stdin_open: true
+    ports:
+      - '3000:3000'
+    tty: true
+    networks:
+      - library-network
 
 networks:
   library-network:
