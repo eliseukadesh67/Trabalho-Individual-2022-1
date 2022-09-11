@@ -41,6 +41,19 @@ services:
     tty: true
     networks:
       - library-network
+  
+  nginx: 
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ../nginx/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - library-network
 
 networks:
   library-network:
