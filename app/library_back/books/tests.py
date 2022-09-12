@@ -26,13 +26,13 @@ class BookTests(unittest.TestCase):
           'id',
           'title',
           'author',
-          'release_year', 
+          'release_year',
           'is_rented',
           'renter'
           )
         invalid_fields = (
           'random_field',
-          'foo', 
+          'foo',
           'bar'
         )
 
