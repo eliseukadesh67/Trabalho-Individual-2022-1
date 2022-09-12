@@ -61,7 +61,7 @@ class Migration(migrations.Migration):
         migrations.AddConstraint(
             model_name='book',
             constraint=models.UniqueConstraint(
-              fields=('title', 'author', 'release_year'), 
+              fields=('title', 'author', 'release_year'),
               name='unique_together_book_keys'),
         ),
     ]
