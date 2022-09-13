@@ -1,1 +1,0 @@
-web: docker-compose -f app/docker/docker-compose.deploy.yml --build up -d

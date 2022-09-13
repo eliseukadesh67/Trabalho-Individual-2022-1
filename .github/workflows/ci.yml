@@ -19,7 +19,7 @@ jobs:
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: heroku container:login
-      - name: Build and push
+      - name: Build and push backend
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
@@ -29,8 +29,24 @@ jobs:
           POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
           SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
         run: cd app/library_back && heroku container:push -a eliseu-kadesh-library-backend web
-      - name: Release
+      - name: Build and push frontend
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: cd app/library_back && heroku container:release -a eliseu-kadesh-library-frontend web
+          API_URL: ${{ secrets.API_URL }}
+        run: cd app/library_front && heroku container:push -a eliseu-kadesh-library-frontend web
+      - name: Release backend
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
+          POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
+          SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+        run: heroku container:release -a eliseu-kadesh-library-backend web
+      - name: Release frontend
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          API_URL: ${{ secrets.API_URL }}
+        run: heroku container:release -a eliseu-kadesh-library-frontend web
 
