@@ -46,7 +46,7 @@ jobs:
         POSTGRES_PASSWORD: password
         POSTGRES_HOST: localhost
         POSTGRES_PORT: 5432
-        SECRET_KEY: 'django-insecure-=rvg207f)yo7^=9+#ut!d9kc47=)ugd1s06dj!9=*kvbbaj561'
+        SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
     - name: Run Tests
       run: |
         cd app/library_back/
@@ -57,7 +57,7 @@ jobs:
         POSTGRES_PASSWORD: password
         POSTGRES_HOST: localhost
         POSTGRES_PORT: 5432
-        SECRET_KEY: 'django-insecure-=rvg207f)yo7^=9+#ut!d9kc47=)ugd1s06dj!9=*kvbbaj561'
+        SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
 
   lint:
     runs-on: ubuntu-latest
