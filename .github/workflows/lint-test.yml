@@ -2,9 +2,9 @@ name: Test and Lint
 
 on:
   push:
-    branches: [ "main", "test/deploy" ]
+    branches: [ "test/deploy" ]
   pull_request:
-    branches: [ "main", "test/deploy" ]
+    branches: [ "test/deploy" ]
 
 jobs:
   test:
