@@ -3,7 +3,7 @@ name: Publish Docker Images
 on:
   workflow_run:
     workflows: [ "Test and Lint" ]
-    branches: [ "main", "test/deploy"]
+    branches: [ "test/deploy"]
     types: 
       - completed
 
