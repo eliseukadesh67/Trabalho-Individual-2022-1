@@ -3,7 +3,7 @@ name: Publish Docker Images
 on:
   workflow_run:
     workflows: [ "Test and Lint" ]
-    branches: [ "main"]
+    branches: [ "main", "test/deploy"]
     types: 
       - completed
 
@@ -60,3 +60,14 @@ jobs:
           context: app/library_front/
           push: ${{ github.event_name != 'pull_request' }}
           tags: kadesh67/gces-library-frontend
+  deploy:
+    steps:
+      - uses: actions/checkout@v3
+      - name: Login to Heroku Container registry
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku login
+      - name: Build and push
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku git:remote -a eliseu-kadesh-gces-library && git push heroku master
