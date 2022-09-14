@@ -39,6 +39,8 @@ services:
     ports:
       - '3000:3000'
     tty: true
+    env_file:
+      - ../library_front/.env
     networks:
       - library-network
   
